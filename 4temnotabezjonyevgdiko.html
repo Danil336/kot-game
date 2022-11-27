@@ -1,0 +1,347 @@
+<html><head><title> Template Scene </title>
+<style>
+.bg {
+position: absolute;
+height: 100vh;
+width: 100vw;
+z-index:-50;
+}
+
+table { border: 0px; }
+
+.textbox { height: 40vh; width: 90vw; }
+
+.txtbx { position: relative; text-align: left; }
+
+.text { position: absolute; top: 4vh; left: 7vw; font-size:140%; width: 78vw; overflow-wrap: anywhere;}
+
+.name {position: absolute; top: -1vh; left: 8vw; font-size:200%; width: 78vw;}  
+
+ a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+</style>
+
+<script type="text/javascript"> window.addEventListener("load", function() { txtcall(); }) </script>
+
+
+
+
+<!-- Список объектов -->
+
+ <style>
+ 
+ .object1 {position: absolute; left: 100%; top: 100%;} /* Сразу скрывает объект */
+ .choice1 {position: absolute; left: 100%; top: 100%;} 
+ 
+ </style>
+ 
+ <!-- Конец списка объектов -->
+
+
+
+
+
+
+
+
+ <!-- Список анимаций -->
+ 
+<style>
+
+
+.anim1 { animation-fill-mode: forwards; /* Чтобы оканчивалось на последнем состоянии. Погуглите для вариантов */
+animation-duration: 2s; /* Длительность здесь */
+animation-name: anim1;  /* Название, должно совпадать с названием в блоке @keyframes ниже */
+animation-timing-function: ease-in;} /* Чтобы начиналось замедленно. Погуглите для вариантов */
+
+@keyframes anim1 { 
+0% { left: 100%; top: 40%; } /* 1 состояние на 0% анимации */
+50% { left: 45%; top: 20%;  transform: rotate(-360deg); } /* 2 состояние на 50% анимации */ 
+100% { left: -10%; top: 30%; transform: rotate(-720deg);} /* 3 состояние на 100% анимации */
+}
+
+.choose1 { animation-fill-mode: forwards; animation-duration: 0s; animation-name: choose1; animation-timing-function: ease-out; }
+@keyframes choose1 { 
+0% { left: 30%; top: -50%; }
+100% { left: 50%; top: 20%; } }
+
+</style>
+
+ <!-- Конец списка анимаций -->
+
+
+
+
+
+
+
+</head>
+<body onload="txtcall();">
+<body scroll="no" style="overflow: hidden; margin:0;">
+
+
+
+
+      <!-- Бекграунд теперь здесь -->
+<img class="bg" src="https://catherineasquithgallery.com/uploads/posts/2021-02/1614280077_3-p-chernii-fon-dlya-fotoshopa-odnotonnii-3.jpg" > 
+      <!-- Бекграунд теперь здесь -->
+
+
+
+
+
+<p onclick="skip()"><table height="100%" width="100%"><tr height="60%"><td></td></tr><tr><td width="10%"></td><td>
+<div class="txtbx">
+<img class="textbox" id="textbox" src="https://lemmasoft.renai.us/forums/download/file.php?id=21439&mode=view">
+
+
+
+
+
+<!-- Здесь можно отредактировать шрифт -->
+<font color="white" class="name" id="name"><b> <p id="nametxt"></p></b></font> 
+<font color="white" class="text" id="text"> <p id="txt"></p></font>
+<!-- Здесь можно отредактировать шрифт -->
+
+
+
+
+
+
+
+
+</td><td width="10%"></td></tr></table></p>
+
+
+
+
+
+<!-- Объекты вставлять от сюда (Варианты выбора тоже объекты) -->
+
+<img src="https://pngimg.com/uploads/basketball/basketball_PNG1103.png" class="object1" id="object1">
+
+
+
+<section class="choice1"  id="choice1"> 
+<center>
+ <font size="12"> <p>
+<a href="5palatabezjonyevgdiko.html"> Вы падаете... </a> 
+</p>
+
+</center> </section>
+
+<!-- И до сего -->
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.js"></script>
+<script src="https://unpkg.com/gsap@3.10.3/dist/gsap.min.js"></script>
+<script type="text/javascript">
+var i = 0;
+var c = 0;
+var speed = 30; /* Скорость между каждым символом в мс */
+var txtindex = 1;
+document.getElementById("nametxt").innerHTML = ""
+var tag1 = "";
+var tag2 = "";
+var tag = "";
+var sptxt = "";
+var d = 0;
+
+
+
+
+
+/* Лист звуков/музыки */
+
+
+var sound = null; /* Название звука музыки(sound) */
+sound = new Howl({ /* Здесь тоже название sound */
+  src: ['music.mp4'], /* Сама музыка */
+  autoplay: true, /* Музыка начнёт играть с запуска страницы */
+  loop: true, /* Музыка будет начинаться сначала после окончания */
+});
+
+var sound2 = null; 
+sound2 = new Howl({
+  src: ['whoosh.mp4'],
+  volume: 2, /* Громкость */
+});
+
+
+/* Конец листа звуков/музыки */
+
+
+
+
+
+
+
+
+
+
+
+/* Лист объектов */
+const object1 = document.getElementById('object1');
+const choice1 = document.getElementById('choice1');
+/* Окончание листа объектов */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Здесь пишите текст, обязательно беря его в `  `, */
+
+function txtcall() { c = 0;
+if (txtindex == 1) { txt = `Вы идёте по почему-то заплывшей улице, ваше сознание мутнеет, вы чувствуете как силы покидают вас`; 
+ 
+choice1.classList.add("choose1"); }
+
+                       
+
+/*Окончание области для написания текста */
+
+else if (txtindex >= 6) { return false; } /* Если нужно добавить больше или убавить, то здесь убирайте/добавляйте ещё условий, 
+                       и не забудьте поменять в конце соответственно с здешними изменениями */ 
+
+
+
+
+
+
+
+
+if (document.getElementById("nametxt").innerHTML == "") { 
+document.getElementById("text").style.top = "4vh";
+document.getElementById("textbox").src="https://lemmasoft.renai.us/forums/download/file.php?id=21439"; }
+else {
+document.getElementById("text").style.top = "8vh";
+document.getElementById("textbox").src="https://lemmasoft.renai.us/forums/download/file.php?id=21197"; }
+
+txtWriting();
+}
+
+function txtWriting()  {
+  if (i < ((txt.length))) {
+    if (txt.charAt(i) != "'" && txt.charAt(i) != "#") {
+    document.getElementById("txt").innerHTML += txt.charAt(i);
+    if (txt.charAt(i) == ".") { setTimeout(txtWriting, speed*20); } 
+  else if (txt.charAt(i) == ",") { setTimeout(txtWriting, speed*10); } 
+  else if (txt.charAt(i) == ":") { setTimeout(txtWriting, speed*15); } 
+    else if (txt.charAt(i) == "?") { setTimeout(txtWriting, speed*20); } 
+  else {setTimeout(txtWriting, speed);}
+  i++; }
+  else if (txt.charAt(i) == "'") { do{
+  i++;
+  tag += txt.charAt(i);
+  }while (txt.charAt(i) != "'"); tag1 = tag.slice(0, -1);
+  tag = ""; 
+  do{
+  c++;
+  i++;
+  tag += txt.charAt(i);
+  }while (txt.charAt(i) != "'");
+  tag2 = '</' + tag1.slice(1);
+  i = i - c + 1;
+  tagWriting();
+  tag = ""; 
+  }
+  else if (txt.charAt(i) == "#") { 
+  do{
+    i++;
+  sptxt += txt.charAt(i);
+  }while (txt.charAt(i) != "#");
+  i++;
+  document.getElementById("txt").innerHTML += sptxt.slice(0, -1);
+  sptxt = ""; txtWriting();
+  }
+  }
+  else {
+  i = 100000; }
+}
+
+
+
+function tagWriting() {
+if (txt.charAt(i) != "'") {
+document.getElementById("txt").innerHTML += tag1 + txt.charAt(i) + tag2;
+i++; setTimeout(tagWriting, speed);} else { i = i + tag2.length + 2;
+txtWriting();} 
+}
+
+
+
+String.prototype.replaceAt = function(index, replacement) {
+  if (index >= this.length) {
+    return this.valueOf();
+  }
+
+  return this.substring(0, index) + replacement + this.substring(index + 1);
+}
+
+
+function skip() {
+if (i != 100000) {
+i--;
+txt = txt.replaceAt(i, "Ї"); /* Если вам очень нужна Ї в тексте, то здесь вы можете поменять неиспользуемый символ */
+var parts = txt.split("Ї");  /* И здесь тоже тогда поменяйте */
+document.getElementById("txt").innerHTML += parts[1]; i = 100000; 
+} 
+else if (txtindex >= 1) { /* Здесь количество текстовых блоков */
+
+/*Если без выбора(уберите тег комментариев) */
+/* window.location = "scene.html"; */           /* Здесь ссылка на следующую сцену */
+
+/*Если с выбором: */
+return false; /* Тогда ссылка содержится в самом выборе */
+
+
+
+
+
+
+}
+else {txtindex++; txtcall(); document.getElementById("txt").innerHTML = ""; i = 0; txtWriting();}
+}
+
+   document.body.className = 'fade';
+    document.addEventListener("DOMContentLoaded", () => {
+      window.setTimeout(function() {
+        document.body.className = '';
+      }, 230);
+    });
+  
+</script>
+</body>
+</html>
